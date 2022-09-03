@@ -118,9 +118,13 @@ app.put('/updateBlog', function (req, res)
     }
     else
     {
-        let blog = new BlogModel(req.body.id, req.body.authorName, req.body.title, req.body.body,
+        let blog = new BlogModel(req.body.id, req.body.authorName, req.body.title, req.body.introduction, req.body.body,
             req.body.conclusion);
+
+        console.log(blog);
+
         let dao = new BlogDAO(dbHost, dbPort, dbUsername, dbPassword, schema);
+
         dao.update(blog, function (changes)
         {
             if (changes == 0)
